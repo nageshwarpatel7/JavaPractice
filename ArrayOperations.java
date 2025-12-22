@@ -1,135 +1,158 @@
 import java.util.*;
 public class ArrayOperations {
-	public static void main(String args[]) {
-		Scanner sc = new Scanner(System.in);
-		int arr[] = new int[10];
-		int n = 0, choice;
+	static Scanner sc = new Scanner(System.in);
+	static int arr[]  = new int[50];
+	static int size =0;
+
+	public static void main(String[] args) {
 		
-		
+		int choice;
+
         do {
-        	System.out.println("\n--- MENU ---");
-		    System.out.println("1. Insert element");
-		    System.out.println("2. Delete element");
-		    System.out.println("3. Linear search");
-		    System.out.println("4. Binary search");
-		    System.out.println("5. Find maximum");
-		    System.out.println("6. Count even and odd");
-		    System.out.println("7. Insertion sort");
-		    System.out.println("8. Display array");
-		    System.out.println("9. Exit");
+            System.out.println("\n===== ARRAY OPERATIONS MENU =====");
+            System.out.println("1. Insert Element");
+            System.out.println("2. Delete Element");
+            System.out.println("3. Linear Search");
+            System.out.println("4. Binary Search");
+            System.out.println("5. Find Maximum Value");
+            System.out.println("6. Count Even and Odd");
+            System.out.println("7. Insertion Sort");
+            System.out.println("8. Display Array");
+            System.out.println("0. Exit");
 
-		    System.out.print("Enter choice: ");
-		    choice = sc.nextInt();
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
 
-		    switch (choice) {
-		    	case 1: // Insert
-		    		if(n==10) {
-		    			System.out.println("Array maximum limit reached");
-		    			break;
-		    		}
-		    		System.out.print("Enter element: ");
-		            arr[n] = sc.nextInt();
-		            n++;
-		            break;
+            switch (choice) {
+                case 1: insertElement(); break;
+                case 2: deleteElement(); break;
+                case 3: linearSearch(); break;
+                case 4: binarySearch(); break;
+                case 5: maximumElement(); break;
+                case 6: countEvenOdd(); break;
+                case 7: insertionSort(); break;
+                case 8: displayArray(); break;
+                case 0: System.out.println("Program terminated."); break;
+                default: System.out.println("Invalid choice!");
+            }
 
-		    	case 2: // Delete
-		    		System.out.print("Enter element to delete: ");
-		            int del = sc.nextInt();
+        } while (choice != 0);
+    }
+       
 
-		            for (int i = 0; i < n; i++) {
-		            	if (arr[i] == del) {
-		            		for (int j = i; j < n - 1; j++) {
-		                          arr[j] = arr[j + 1];
-		                    }
-		                    n--;
-		                    break;
-		                    }
-		             }
-		             break;
+     //insert method 
+     public static void insertElement() {
+    	System.out.println("Enter a Size : ");
+    	size = sc.nextInt();
+    	for(int i=0; i<size; i++) {
+    		arr[i]=sc.nextInt();
+    	}
+     }
+     
+     // delete method 
+     public static void deleteElement() {
+    	 System.out.print("Enter element to delete: ");
+    	 int key = sc.nextInt();
+    	 int index =-1;
+    	 for(int i=0; i<size; i++) {
+    		 if(arr[i]==key) {
+    			 index = i;
+    			 break;
+    		 }
+    	 }
+    	 if (index == -1) {
+             System.out.println("Element not found.");
+             return;
+         }
 
-		         case 3: // Linear search
-		             System.out.print("Enter element to search: ");
-		             int key = sc.nextInt();
-
-		             for (int i = 0; i < n; i++) {
-		                 if (arr[i] == key) {
-		                    System.out.println("Element found at position " + i);
-		                    break;
-		                 }
-		             }
-		             break;
-
-		         case 4: // Binary search (assumes sorted array)
-		             System.out.print("Enter element to search: ");
-		             key = sc.nextInt();
-		             int low = 0, high = n - 1;
-
-		             while (low <= high) {
-		                int mid = (low + high) / 2;
-
-		                if (arr[mid] == key) {
-		                    System.out.println("Element found");
-		                    break;
-		                } else if (arr[mid] < key) {
-		                    low = mid + 1;
-		                } else {
-		                      high = mid - 1;
-		                }
-		             }
-		             break;
-
-		         case 5: // Maximum
-		        	 int max = arr[0];
-		             for (int i = 1; i < n; i++) {
-		            	 if (arr[i] > max)
-		                     max = arr[i];
-		                 }
-		                 System.out.println("Maximum value = " + max);
-		                 break;
-
-		         case 6: // Even / Odd count
-		               int even = 0, odd = 0;
-		               for (int i = 0; i < n; i++) {
-		            	   if (arr[i] % 2 == 0)
-		            		   even++;
-		                   else
-		                       	odd++;
-		                    }
-		                    System.out.println("Even = " + even);
-		                    System.out.println("Odd = " + odd);
-		                    break;
-
-		                case 7: // Insertion sort
-		                    for (int i = 1; i < n; i++) {
-		                        int temp = arr[i];
-		                        int j = i - 1;
-
-		                        while (j >= 0 && arr[j] > temp) {
-		                            arr[j + 1] = arr[j];
-		                            j--;
-		                        }
-		                        arr[j + 1] = temp;
-		                    }
-		                    System.out.println("Array sorted");
-		                    break;
-
-		                case 8: // Display
-		                    System.out.print("Array elements: ");
-		                    for (int i = 0; i < n; i++) {
-		                        System.out.print(arr[i] + " ");
-		                    }
-		                    System.out.println();
-		                    break;
-
-		                case 9:
-		                    System.out.println("Exit");
-		                    break;
-
-		                default:
-		                    System.out.println("Invalid choice");
-		            }
-        } while (choice != 9);
-
-        sc.close();
-	}
+         for (int i = index; i < size - 1; i++) {
+             arr[i] = arr[i + 1];
+         }
+         size--;
+     }
+     
+     
+     // linear search 
+     public static void linearSearch() {
+    	 
+    	 System.out.println("Enter the number to search : ");
+    	 int target = sc.nextInt();
+    	 for(int i=0; i<size; i++) {
+    		 if(arr[i]==target) {
+    			 System.out.print("Element Found " +i);
+    			 return;
+    		 } 		 
+    	 }
+    	 System.out.println("Not Found !");
+     }
+     
+     
+     //  Performs binary search (array must be sorted)
+     public static void binarySearch() {
+    	 //insertionSort();
+    	 System.out.print("Enter element to search: ");
+         int target = sc.nextInt();
+         
+         int low =0 , high = size-1;
+         while(low<high) {
+        	 int mid = (low+high)/2;
+        	 if(arr[mid] == target) {System.out.println("Element Found : "+mid);
+        	 return;
+        	 }
+        	 else if(target<arr[mid]) {
+        		 high = mid-1;
+        	 }
+        	 else {
+        		 low = mid+1;
+        	 }
+         }
+         System.out.println("Not Found!");
+     }
+     
+     // Finds the maximum element
+     public static void maximumElement() {
+    	 int max = arr[0];
+    	 for(int i=0; i<size; i++) {
+    		 if(arr[i]>max) {
+    			 max = arr[i];
+    		 }
+    	 }
+    	 System.out.println("Maximum Element: "+max);
+     }
+     
+     
+     //count EvenOdd
+     public static void countEvenOdd() {
+    	 int evenCount =0;
+    	 int oddCount = 0;
+    	 for(int i=0; i<size; i++) {
+    		 if(arr[i]%2==0)evenCount++;
+    		 else oddCount++;
+    	 }
+    	 System.out.println("Even Count : "+evenCount + "  Odd Count : "+oddCount);
+     }
+     
+     // Sorts the array using insertion sort
+     public static void insertionSort() {
+    	 for (int i = 1; i < size; i++) {
+             int key = arr[i];
+             int j = i - 1;
+             while (j >= 0 && arr[j] > key) {
+                 arr[j + 1] = arr[j];
+                 j--;
+             }
+             arr[j + 1] = key;
+         }
+     }
+     
+     
+     static void displayArray() {
+         if (size == 0) {
+             System.out.println("Array is empty.");
+             return;
+         }
+         for (int i = 0; i < size; i++)
+             System.out.print(arr[i] + " ");
+         System.out.println();
+     }
 }
