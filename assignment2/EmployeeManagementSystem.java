@@ -213,9 +213,6 @@ public class EmployeeManagementSystem {
 	                }
 	            } while (choice != 0);
 
-	        sc.close();
-	     
-	        
+	        sc.close();  
 	}
-
 }
