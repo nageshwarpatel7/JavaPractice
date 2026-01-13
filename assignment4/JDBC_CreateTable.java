@@ -10,7 +10,7 @@ public class JDBC_CreateTable {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/practice","root","1234");
 			
-			String createTable = "create table Student(roll_no INT  primary key , name varchar(20), branch varchar(20), yop INT  ,sem varchar(10), ) ";
+			String createTable = "create table Student(roll_no INT  primary key , name varchar(20), branch varchar(20), yop INT  ,sem varchar(10)) ";
 			Statement st = con.createStatement();
 			st.execute(createTable);
 			
