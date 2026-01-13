@@ -11,14 +11,12 @@ interface EmployeeOperations {
     void removeEmployee(Integer id);
 }
 
-
 // Employee Class blueprint
 class Employee{
 	private int id;
 	private String name;
 	private String email;
-	private String department;
-	
+	private String department;	
 	
 	Employee(int id, String name,String email,String department){
 		this.id = id;
