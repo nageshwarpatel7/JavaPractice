@@ -12,7 +12,7 @@ public class JDBC_UpdatePercent {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/practice","root","1234");
 			
-			String updateStructure = "alter table students Add percentage Decimal(5,2)";
+			String updateStructure = "alter table student Add percentage Decimal(5,2)";
 			
 			Statement st = con.createStatement();
 			st.execute(updateStructure);
